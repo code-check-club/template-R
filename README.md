@@ -43,7 +43,7 @@ The code was last run on a 2017 iMac and took <1 minute to render.
 
 ## Instructions
 
-Open the file appendixA.Rmd (R Markdown version) or appendixB.qmd (Quarto version) and knit/render using the interface in RStudio or the . All paths are relative, so no edits should be necessary. 
+Open the file appendixA.Rmd (R Markdown version) or appendixB.qmd (Quarto version) and knit/render using the interface in RStudio or the code below. All paths are relative, so no edits should be necessary. 
 
 ``` r
 rmarkdown::render("appendixA.Rmd")
