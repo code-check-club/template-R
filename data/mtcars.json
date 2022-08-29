@@ -1,0 +1,76 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Motor Trend Car Road Tests",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "description": "The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).",
+    "source": "Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "mpg",
+            "description": "Miles/(US) gallon",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "cyl",
+            "description": "Number of cylinders",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "disp",
+            "description": "Displacement (cu.in.)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "hp",
+            "description": "Gross horsepower",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "drat",
+            "description": "Rear axle ratio",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "wt",
+            "description": "Weight (1000 lbs)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "qsec",
+            "description": "1/4 mile time",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "vs",
+            "description": "Engine (0 = V-shaped, 1 = straight)",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "am",
+            "description": "Transmission (0 = automatic, 1 = manual)",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "gear",
+            "description": "Number of forward gears",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "carb",
+            "description": "Number of carburetors",
+            "dataType": "int"
+        }
+    ]
+}

@@ -1,0 +1,87 @@
+---
+title: "Appendix A: R Markdown"
+author: "Your Name"
+date: 'Rendered on `r Sys.Date()`'
+output: 
+  bookdown::html_document2: 
+    toc: true
+    toc_float: true
+    df_print: paged # default, kable, tibble, paged, or a custom function
+    code_folding: show # null, hide, show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  out.width = '100%'
+)
+
+# packages used ----
+library(tidyr)      # for data processing
+library(dplyr)      # for data processing
+library(readr)      # for reading/saving data
+library(ggplot2)    # for plots
+library(kableExtra) # for tables
+
+# load external scripts ----
+source("R/functions.R")
+```
+
+You can reference figures or tables using the chunk name, e.g., Figure \@ref(fig:disp-hp-vs) and Table \@ref(tab:mtcars).
+
+## Data Processing
+
+Scripts typically start with the code to transform raw data into processed data. Time-consuming code may be set to not evaluate and the results saved and loaded in a separate code chunk.
+
+```{r, eval = FALSE}
+# calculate means by number of gears and carburetors
+aggregated <- mtcars |>
+  group_by(gear, carb) |>
+  summarise(mpg = mean(mpg),
+            disp = mean(disp),
+            hp = mean(hp),
+            .groups = "drop")
+
+write_csv(aggregated, "data/aggregated.csv")
+```
+
+```{r}
+# load saved data
+aggregated <- read_csv("data/aggregated.csv", show_col_types = FALSE)
+```
+
+
+
+## Tables
+
+If you use `knitr::kable()` or `kabelExtra::kable()` to display tables with captions, they are added to the auto-numbered tables.
+
+```{r mtcars}
+table1 <- aggregated |>
+  kable(caption = "Mean miles per gallon (mpg), displacement (disp) and horsepower (hp) by number of forward gears (gear) and carburetors (carb)", digits = 1) |>
+  kable_material()
+
+save_kable(table1, "tables/table1.html")
+
+table1
+```
+
+## Figures
+
+The fig-alt option sets alt-text for screen readers. This should allow a person with low or no vision to understand the meaning of the plot. 
+
+```{r disp-hp-vs}
+#| fig.cap: The relationship between displacement and horsepower for V-shaped and straight engines.
+#| fig.alt: A scatterplot with Displacement (cu.in.) along the x-axis, ranging from ~50 to ~500, and Gross Horsepower along the y-axis, ranging from ~50 to ~350. 15 red points are plotted for V-shaped engines and 12 blue points for straight engines. There is a positive relationship between displacement and horsepower, with the V-shaped engines having typically higher values on both than straight engines. 
+
+ggplot(mtcars, aes(x = disp, y = hp, color = as.factor(vs))) +
+  geom_point() +
+  labs(x = "Displacement (cu.in.)",
+       y = "Gross Horsepower") +
+  scale_color_manual(name = "Engine", 
+                     labels = c("V-shaped", "straight"), 
+                     values = c("firebrick", "dodgerblue3"))
+
+ggsave("figures/plot1.png", width = 7, height = 5)
+```
+
